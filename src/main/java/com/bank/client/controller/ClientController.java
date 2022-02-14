@@ -1,5 +1,6 @@
 package com.bank.client.controller;
 
+import com.bank.client.model.dao.Credit;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,6 +49,11 @@ public class ClientController {
 	@DeleteMapping("/{id}")
 	public void deleteClient(@PathVariable("id") String id) {
 		clientService.delete(id);
+	}
+
+	@GetMapping("/credits/{clientId}")
+	public Flux<Credit> getCredits(@PathVariable("clientId") String clientId){
+		return clientService.getCredits(clientId);
 	}
 	
 }
